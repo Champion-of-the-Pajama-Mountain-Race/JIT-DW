@@ -1,0 +1,86 @@
+# Research method
+
+**Status:** Research protocol. No project-level conclusions should be treated as findings until supported by case-study evidence.
+
+The central requirement of this research is to inspect what open-source projects actually maintain—not only what their documentation guidelines say they should maintain.
+
+## 1. Research questions
+
+1. Where do projects put explanations of system architecture, modules, APIs, invariants, and operational procedures?
+2. What do source comments and docstrings explain that external documentation does not?
+3. How do projects distinguish current implementation documentation from historical design rationale?
+4. What events trigger documentation changes?
+5. How are documentation changes reviewed, tested, generated, or enforced?
+6. How is responsibility assigned across files, directories, modules, and teams?
+7. Which practices are consistent with published frameworks, and which contradict or refine them?
+8. What maintenance costs or failure modes are visible in repository history?
+
+## 2. Evidence categories
+
+Each case study must label evidence by type:
+
+| Code | Evidence type | What it can establish |
+|---|---|---|
+| P | Policy or guidance | What maintainers say contributors should do. |
+| D | Maintained documentation | What readers are actually given. |
+| C | Source comment / docstring | What the implementation explains locally. |
+| I | Implementation structure | Boundaries, interfaces, generated annotations, and code organization. |
+| T | Tests / fixtures / examples | Executable expectations and behavior contracts. |
+| A | Automation / CI / presubmit | What the project mechanically checks or generates. |
+| H | History / PR / issue | How documentation changes alongside code in real work. |
+
+A policy file alone cannot establish that the policy is followed. A source comment alone cannot establish that readers find it useful. Strong conclusions should compare multiple evidence types.
+
+## 3. Evidence quality
+
+Use these confidence labels:
+
+- **High:** directly observed in a pinned repository revision and corroborated by another evidence type or repeated examples.
+- **Medium:** directly observed in one or more files, but intent, consistency, or practical effect is not fully established.
+- **Low:** plausible interpretation, isolated example, or incomplete evidence.
+
+For claims about why a project uses a practice, separate:
+- **stated rationale** — explicitly explained by maintainers;
+- **inferred rationale** — a reason suggested by the design or context, labeled as inference;
+- **unknown** — repository evidence does not establish the reason.
+
+Do not turn inference into fact.
+
+## 4. Repository inspection protocol
+
+For each project:
+
+1. Record repository URL, default branch, and exact commit SHA.
+2. Inspect top-level structure and documentation entry points.
+3. Locate contribution guidance, documentation policies, ownership files, build configuration, and CI checks.
+4. Select representative modules and inspect:
+   - source comments and docstrings;
+   - nearby README or design documentation;
+   - public API or schema definitions;
+   - tests and examples;
+   - generated documentation inputs and outputs.
+5. Inspect a small number of relevant PRs or commit histories to see whether docs change with code.
+6. Compare observed practice with published guidance (for example Diátaxis, C4, Docs as Code, or the project's own policy).
+7. Record counterexamples, gaps, and maintenance trade-offs.
+8. Write a bounded conclusion: what the evidence supports, what it does not support, and what needs further inspection.
+
+## 5. Case-study output
+
+Use case-studies/CASE-STUDY-TEMPLATE.md.
+
+Each claim should link to a specific file or commit and, where possible, a line range. Pin references to a commit SHA so the evidence remains reproducible when the default branch changes.
+
+## 6. Anti-patterns in our own research
+
+- citing only a project homepage or high-level guide;
+- treating the presence of a template as proof it is used;
+- treating a directory tree as proof of clear ownership;
+- inferring intent from a comment without corroboration;
+- selecting only examples that support our preferred design;
+- generalizing from one subsystem to an entire project;
+- comparing projects without accounting for language, scale, safety requirements, and release model;
+- copying a practice without recording its trade-offs.
+
+## 7. Candidate field studies
+
+See target-projects.md. The list is a research queue, not a ranking or a statement that these projects follow JIT-DW principles.
