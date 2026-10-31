@@ -1,6 +1,6 @@
 # Recipes — optional starting points
 
-These are not required files or compliance templates. Each recipe explains **the reader problem, a minimal example, and when not to use it**. Copy only what helps. Rename, combine, simplify, or delete the sections your project doesn't need.
+These are not required files or compliance templates. Each recipe explains **the reader problem, a minimal example, and when not to use it**. Use the ideas selectively: simplify, combine or skip sections when they do not help. **The repository has no selected reuse license yet; these examples illustrate practices but are not currently a blanket grant to copy or redistribute their text.**
 
 | Reader problem | Recipe | When to skip it |
 |---|---|---|
