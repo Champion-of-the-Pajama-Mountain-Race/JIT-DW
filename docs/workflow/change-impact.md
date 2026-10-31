@@ -94,7 +94,8 @@ Automation should produce evidence and prompts, not fabricate a semantic impact 
 
 ## 7. Evidence-backed cautions
 
-- Chromium states a same-CL documentation policy, but JIT-DW has not yet measured compliance across its CL history.
+- Linux's kref history shows that source comments may exist without appearing in published HTML; the source comments and the Sphinx inclusion page were fixed together.
+- Chromium states a same-CL documentation policy, and one ThreadPool refactor updated the component README in the same commit; broader CL compliance remains unmeasured.
 - Django feature PR #21357 changed implementation, reference docs, release notes, and tests together.
 - Rust PR #126428 changed source-level API documentation without requiring a separate user-guide page.
 - Kubernetes has specific field-name and generated-document checks, but its Go API changelog check is explicitly optional and non-blocking.
