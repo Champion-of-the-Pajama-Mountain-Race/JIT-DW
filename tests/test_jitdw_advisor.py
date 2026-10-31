@@ -74,6 +74,27 @@ class AdvisorTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             advisor.analyze("not-a-profile", [], PROFILES)
 
+    def test_machine_consumed_docstring_rule(self):
+        r = advisor.analyze("astrbot", ["astrbot/core/star/register/star_handler.py"], PROFILES)
+        ids = [x["id"] for x in r["suggestions"]]
+        self.assertIn("llm-tool-docstring-runtime-contract", ids)
+        self.assertEqual(r["decision"], "human-review-required")
+
+    def test_machine_consumed_docs_are_not_silently_passed(self):
+        r = advisor.analyze("astrbot", ["docs/en/dev/star/guides/ai.md"], PROFILES)
+        ids = [x["id"] for x in r["suggestions"]]
+        self.assertIn("llm-tool-docstring-runtime-contract", ids)
+        self.assertNotEqual(r["decision"], "no-update-required")
+
+    def test_codex_argument_comment_lint_mapping(self):
+        r = advisor.analyze("codex", ["tools/argument-comment-lint/README.md"], PROFILES)
+        self.assertIn("argument-comment-contract", [x["id"] for x in r["suggestions"]])
+
+    def test_generator_closure_prompt(self):
+        r = advisor.analyze("codex", ["codex-rs/app-server-protocol/src/schema_fixtures_tests.rs"], PROFILES)
+        surface = [x for x in r["suggestions"] if x["id"] == "app-server-contract"][0]
+        self.assertIn("generated file-set and content equality checks", surface["review_surfaces"])
+
     def test_advisory_disclaimer(self):
         output = advisor.to_markdown(advisor.analyze("codex", ["AGENTS.md"], PROFILES))
         self.assertIn("No automatic decision", output)
