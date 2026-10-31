@@ -1,5 +1,7 @@
 # Workflow overview
 
+> **Research reference, not the required JIT-DW path.** The primary [developer Guide](../../guide/README.md) explains how to make useful documentation choices without forms, acceptance gates, or extra files. This page preserves our earlier formal workflow hypothesis for projects that genuinely need more structure.
+
 **Status:** Provisional design revised after the first repository field-study tranche. The stages below remain hypotheses to test in pilot projects.
 
 JIT-DW is a decision workflow, not a requirement to create every possible document. A project should enter only the stages and artifacts that solve a real discovery, coordination, or maintenance problem.
