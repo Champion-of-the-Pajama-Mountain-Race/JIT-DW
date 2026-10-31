@@ -1,8 +1,21 @@
 # Validation plan
 
-**Status:** Planned. No pilot results exist yet.
+**Status:** Guide-only usability pilots are still planned. Optional advisory prototype tests and GitHub Actions Runner probes have executed, but no independent Guide usability or maintenance-cost trial has been completed.
 
-The workflow must be tested against real repositories and real maintenance tasks. A complete-looking template set is not evidence that the process works.
+The **Guide** must be tested with real developers and maintenance tasks, without requiring them to run the optional classifier. A complete-looking template set or passing CI is not evidence that readers can use the documentation.
+
+## Guide-first test: developer autonomy and reader success
+
+Before evaluating automation accuracy, compare a developer using **only the [Guide](../guide/README.md)** against an ordinary baseline on a real task.
+
+- Ask the person to decide whether they need a new document, an existing-page change, a source comment, clearer API code, or no documentation change.
+- Observe whether they can explain the intended reader and the reason for the choice.
+- Give a second reader a concrete task to complete using the result.
+- Record **time, reader success, unnecessary new artifacts, confusion, and whether the developer felt constrained**.
+- Include one code-only refactor (where doing nothing may be correct) and one genuine reader-facing API/onboarding problem.
+- Give the developer final authority subject to the project's actual conventions. Do not award points for filling a template.
+
+The advisory tool should be evaluated separately, only if it appears to add value beyond the Guide.
 
 ## 1. Pilot types
 
