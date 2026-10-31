@@ -1,50 +1,72 @@
 # Recipe: guide a newcomer to their first successful task
 
-**Use when:** people can find the repository but cannot reliably reach an observable first result.
+**Use when:** people can find the project but cannot reliably reach an observable first result.
 
-**Don't use when:** an existing clear README, command help, or short example already completes that journey. Avoid introducing a docs site just to host one page.
+**Don't use when:** the README, CLI help or a tested snippet already gets them there. Avoid adding a docs site for one simple first-use path.
 
-## A small illustrative quickstart
+## A complete, runnable toy example
 
-~~~markdown
-# First successful conversion
+The following is an **original teaching example**, not an existing product's quickstart. It shows what it means to give exact setup, execution, expected output, and a failure path. It uses only Python's standard library and a POSIX-style shell.
 
-This utility converts a local CSV file to JSON.
+### 1. Prepare an input file
 
-## Before you begin
-
-- Python 3.12 or newer
-- A local checkout of this project
-
-## Try it
-
-1. Install the project using the instructions in the repository README.
-2. Run the project's converter on examples/people.csv.
-3. Open the generated result and check that it contains a JSON array.
-
-Expected: each input row becomes one object, keyed by the CSV header.
-
-## If it fails
-
-- Check that the input file exists.
-- Confirm you are running the documented version of the converter.
-- See docs/reference/cli.md for flags and exit codes.
-
-## Next
-
-To customize output, read docs/how-to/configure-output.md.
+~~~sh
+printf 'name,score\nAda,9\nLin,8\n' > people.csv
 ~~~
 
-The project, behavior, command, and paths above are **fictional placeholders**, not executable instructions for a real tool. Replace them with exact, tested commands and outputs before publishing. A real quickstart should not say merely “run the converter” without showing the actual command; this example deliberately highlights the structure, not a ready-to-run command.
+### 2. Create a small converter
 
-## Improve the draft before shipping
+~~~python
+# save as convert.py
+import csv
+import json
+import sys
+from pathlib import Path
 
-- Put the real command where step 2 is; avoid guesses about installation.
-- Add one representative input and the exact expected output.
-- Test the steps in a clean environment or ask a newcomer to do so.
-- State supported platform/version limitations.
-- Link to a detailed reference instead of embedding every option.
+source = Path(sys.argv[1])
+destination = Path(sys.argv[2])
+with source.open(newline="", encoding="utf-8") as stream:
+    records = list(csv.DictReader(stream))
+destination.write_text(json.dumps(records, indent=2) + "\n", encoding="utf-8")
+~~~
 
-Django's [writing documentation guide](https://github.com/django/django/blob/f4c65fd6a517dd32bd2e732ae3543e550e56f206/docs/internals/contributing/writing-documentation.txt) emphasizes getting the learner to do something useful early. Rust's [rustdoc guide](https://github.com/rust-lang/rust/blob/92b5b8c87c61b20adc9001b41baf587634a74734/src/doc/rustdoc/src/how-to-write-documentation.md) similarly recommends a front-page summary and concrete example.
+### 3. Run and inspect the result
+
+~~~sh
+python3 convert.py people.csv people.json
+cat people.json
+~~~
+
+Expected output:
+
+~~~json
+[
+  {
+    "name": "Ada",
+    "score": "9"
+  },
+  {
+    "name": "Lin",
+    "score": "8"
+  }
+]
+~~~
+
+The values are strings because a CSV reader does not infer integer types; that is a meaningful limitation the reader should know. If the input path is wrong, Python raises a file-not-found error. A real product's guide should describe its own supported failures and recovery paths.
+
+## Transfer this pattern to your project
+
+Replace the toy code with **the project's actual install command, exact invocation, test input, and expected result**. If shell instructions differ across platforms, say which platform you tested. If a command needs credentials, specify a safe test setup without publishing secrets.
+
+A practical first-use document should answer:
+- What will I achieve?
+- What do I need beforehand?
+- What exact action do I take?
+- What tells me it worked?
+- Where do I go if it fails or want more?
+
+Django's [writing guide](https://github.com/django/django/blob/f4c65fd6a517dd32bd2e732ae3543e550e56f206/docs/internals/contributing/writing-documentation.txt) stresses getting a learner to a useful action early. Rust's [rustdoc guide](https://github.com/rust-lang/rust/blob/92b5b8c87c61b20adc9001b41baf587634a74734/src/doc/rustdoc/src/how-to-write-documentation.md) recommends a front-page purpose and real example.
+
+**A good quickstart is not necessarily long.** If a working command and one expected line of output are enough, stop there.
 
 [Back to recipes](README.md).
