@@ -96,3 +96,7 @@ A pilot should result in one of:
 - **inconclusive:** evidence is insufficient.
 
 Document negative results. They are part of the research.
+
+## 7. First implementation baseline
+
+The first working advisory prototype and its limitations are described in the [Codex + AstrBot pilot plan](pilots/codex-astrbot/README.md). Eight real PRs were sampled (four per project), and deterministic path-to-question behavior has local Python standard-library tests. These fixtures are not independently labeled gold-standard documentation impacts; no precision, recall, user-task success, or maintenance time is reported yet. Running the test workflow on a hosted GitHub runner validates the prototype only, not the full Codex or AstrBot build.

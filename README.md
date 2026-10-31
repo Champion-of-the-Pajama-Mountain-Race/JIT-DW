@@ -34,6 +34,12 @@ Do not promote a hypothesis to an observed practice merely because it sounds rea
 - [Design decisions](docs/decisions/README.md) — decisions and unresolved questions.
 - [Validation plan](validation/README.md) — how the workflow will be tested in real projects.
 
+## Live pilot preparation — Codex and AstrBot
+
+The first retrospective pilot [compares real Codex and AstrBot PRs](validation/pilots/codex-astrbot/README.md), includes eight pinned change-file fixtures, and runs a [stdlib-only advisory router](tools/jitdw_advisor.py). It deliberately produces reviewer questions, not automatic claims that a documentation file must be edited. Its [test workflow](.github/workflows/jitdw-advisory-tests.yml) runs on JIT-DW pull requests.
+
+Fork-based execution is not yet complete. See the pilot README for the exact fork creation/access blocker, runner assumptions, and measurement plan. No upstream project was modified.
+
 ## Current research
 
 - [Repository field-study synthesis V0.2](research/findings-v0.2.md): actual PR/commit evidence and revisions to our hypotheses.
