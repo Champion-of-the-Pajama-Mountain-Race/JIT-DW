@@ -13,7 +13,7 @@
 | Introducing documentation practices to a team | [Adopt at your own scale](05-adoption.md) | Low-overhead ways to begin and conditions for adding more process |
 | Wondering why a recommendation exists | [Lessons from mature projects](06-case-lessons.md) | Source-linked evidence, alternatives, and cases where not to copy it |
 | Wanting to see the whole reading process | [Worked public-source example](07-worked-example.md) | Follow a reader question from a module map to a precise interface contract |
-| Wanting a concrete starting page or example | [Recipes](recipes/README.md) | Copyable, optional examples with an explanation of when to use them |
+| Wanting a concrete starting page or example | [Recipes](recipes/README.md) | Illustrative, optional examples with an explanation of when to use them |
 
 [中文十分钟实践](quickstart.zh-CN.md) · [中文导读](README.zh-CN.md) · [Research sources and limitations](../research/README.md) · [Optional advisory tools](../tools/jitdw_advisor.py)
 
