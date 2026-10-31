@@ -39,6 +39,27 @@ These are real environment observations for `org-linux-03`, **not** proof of the
 
 This private-repo probe confirms self-hosted scheduling works inside an eligible private repository. It does not resolve the public-Fork queued jobs, which should not be "fixed" by broadening persistent Runner access.
 
+## Refined toolchain inventory on a second private Runner instance
+
+A second run, [41195112204](https://github.com/Champion-of-the-Pajama-Mountain-Race/Bot_R_A_D/actions/runs/41195112204), succeeded on `org-linux-02` (same `default` group and `Bot` machine). It clarified the earlier npm/pnpm output and checked additional tools:
+
+| Tool | Observed on org-linux-02 |
+|---|---|
+| Python 3 / Python 3.12 | 3.14.4 / 3.12.16 |
+| uv | 0.12.5 |
+| rustc / Cargo / rustfmt | 1.98.0 / 1.98.0 / 1.9.0-stable |
+| Git | 2.53.0 |
+| Node / npm / pnpm | 22.23.4 / 10.9.9 / 9.15.9 |
+| cargo-nextest | **missing** |
+| just | **missing** |
+| bazel / bazelisk | **missing** |
+| dotslash | **missing** |
+| clang / cmake | present; versions not fully extracted in this probe |
+
+These are checks of what is on PATH, not assertions that the tools cannot be installed or bootstrapped by project workflows. AstrBot's docs build specifies Node 24.13.0 and pnpm 10.28.2, so the existing Node 22/pnpm 9 installations are **not the declared docs-build versions**. Codex source-build documentation lists just, DotSlash and cargo-nextest; Codex's primary PR CI uses Bazel.
+
+**No installation is necessary for the JIT-DW advisory trial on hosted Ubuntu.** Before any larger trusted build on the private machine, install/pin dependencies in a dedicated job or isolated environment rather than modifying the machine blindly.
+
 ## Security decision
 
 **Do not grant these public Forks access to the existing persistent organization Runner just to clear a queued smoke test.** GitHub [recommends self-hosted runners primarily for private repos](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/manage-access), because untrusted public pull requests can compromise a self-hosted machine. For the next JIT-DW experiments, use hosted Ubuntu; a separate ephemeral, isolated Runner is the alternative for a costly build.
