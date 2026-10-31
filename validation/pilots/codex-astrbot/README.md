@@ -1,6 +1,6 @@
 # Codex + AstrBot: retrospective pilot baseline
 
-**Status:** Upstream diff inspection, local and hosted prototype tests, organization Fork creation, and successful hosted Runner probes completed. Both organization self-hosted probes remain queued. This is *not* a validated documentation-impact accuracy result.
+**Status:** Upstream diff inspection, local and hosted prototype tests, organization Fork creation, and successful hosted Runner probes completed. Both public-Fork self-hosted probes initially queued and were later cancelled after the workflows were changed to hosted-only. This is *not* a validated documentation-impact accuracy result.
 
 **Inspected:** 2026-10-31. Both targets were confirmed publicly readable:
 - https://github.com/openai/codex (default branch main)
@@ -15,7 +15,7 @@ Both organization Forks exist and the connected GitHub account can create branch
 - [Codex pilot branch](https://github.com/Champion-of-the-Pajama-Mountain-Race/codex/tree/research/jitdw-advisory-pilot)
 - [AstrBot pilot branch](https://github.com/Champion-of-the-Pajama-Mountain-Race/AstrBot/tree/research/jitdw-advisory-pilot)
 
-The branches contain only isolated, branch-scoped Runner-probe workflows. Their **GitHub-hosted jobs passed**; organization self-hosted jobs remained queued. The older "Fork setup required" instructions are superseded. See the [dated Runner evidence](runner-probe.md).
+The branches contain only isolated, branch-scoped Runner-probe workflows. Their **GitHub-hosted jobs passed**; self-hosted jobs initially queued and were then cancelled after removing those jobs from the public Fork branches. The older "Fork setup required" instructions are superseded. See the [dated Runner evidence](runner-probe.md).
 
 **Safety:** Both Forks are public. Do not grant the existing persistent organization Runner blanket access merely to clear the queued jobs. Use hosted CI for this advisory experiment.
 
@@ -75,7 +75,7 @@ Use Updated / No update required / Deferred / Unknown per changed fact. A source
 - **Future Codex fork code checks:** pinned Rust toolchain and possibly Bazel, just, dotslash, cargo-nextest, build tools and sufficient disk space for scoped crate tests. Inspect fork workflow/toolchain pin before installing.
 - **Future AstrBot fork code checks:** Python >=3.12, uv, Ruff/pytest, and Node + pnpm if documentation site/WebUI or generated clients are touched.
 
-Hosted runners successfully ran the two Fork probes. Organization self-hosted jobs were queued and did not execute tool-presence checks; no missing package can be inferred. CI should start advisory and scope tests narrowly; don't enable untrusted upstream workflows with privileged secrets.
+Hosted runners successfully ran the two Fork probes. Organization self-hosted jobs were initially queued in the public Forks and then cancelled without execution. Trusted private Bot_R_A_D runs did execute tool-presence checks and found missing just, cargo-nextest, Bazel/Bazelisk and DotSlash; see [runner report](runner-probe.md). CI should start advisory and scope tests narrowly; don't enable untrusted upstream workflows with privileged secrets.
 
 ## Limitations and next step
 
