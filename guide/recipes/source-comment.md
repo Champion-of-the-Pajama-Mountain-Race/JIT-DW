@@ -27,18 +27,24 @@ This is an illustrative snippet, not a claim about a real project's retry contra
 ## Example 2 — document the public behavior, not the function's syntax
 
 ~~~python
+import json
+from pathlib import Path
+
 def read_config(path: str) -> dict:
-    """Load a JSON configuration from a local file.
+    """Load a JSON object from a local file.
 
     Raises:
         FileNotFoundError: The path does not exist.
-        ValueError: The file contains invalid configuration.
+        ValueError: The file is not valid JSON or its root is not an object.
     """
-    # Implementation omitted.
-    ...
+    with Path(path).open(encoding="utf-8") as stream:
+        data = json.load(stream)
+    if not isinstance(data, dict):
+        raise ValueError("Configuration root must be a JSON object")
+    return data
 ~~~
 
-This illustrates **what callers need to expect**; the actual errors and return semantics must match the implementation. Do not add irrelevant Args/Returns sections simply to fill a template unless the project or runtime parser needs them.
+This example is complete enough to run and deliberately documents errors the implementation can produce (JSON decoding errors are subclasses of ValueError). The interface's actual errors and return semantics must match the explanation. Do not add irrelevant Args/Returns sections simply to fill a template unless the project or runtime parser needs them.
 
 ## Example 3 — when a docstring is actually executable
 
