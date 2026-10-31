@@ -1,10 +1,10 @@
 # Runner probe: Codex and AstrBot Forks
 
-**Date:** 2026-10-31. **Status:** Both GitHub-hosted jobs passed; both self-hosted jobs remained queued when checked. This is an access/scheduling uncertainty, *not* evidence of missing toolchains.
+**Date:** 2026-10-31. **Status:** Both GitHub-hosted jobs passed. The initial public-Fork self-hosted jobs queued without being accepted and were subsequently **cancelled** by the configured concurrency group after the pilot workflows were made hosted-only. This is an access/scheduling uncertainty, *not* evidence of missing toolchains.
 
 | Public organization Fork | GitHub Actions run | Hosted job | `[self-hosted, linux, x64]` |
 |---|---|---|---|
-| [codex pilot branch](https://github.com/Champion-of-the-Pajama-Mountain-Race/codex/tree/research/jitdw-advisory-pilot) | [41193961696](https://github.com/Champion-of-the-Pajama-Mountain-Race/codex/actions/runs/41193961696) | **success** | queued, not executed |
+| [codex pilot branch](https://github.com/Champion-of-the-Pajama-Mountain-Race/codex/tree/research/jitdw-advisory-pilot) | [41193961696](https://github.com/Champion-of-the-Pajama-Mountain-Race/codex/actions/runs/41193961696) | **success** | queued initially; later cancelled without execution |
 | [AstrBot pilot branch](https://github.com/Champion-of-the-Pajama-Mountain-Race/AstrBot/tree/research/jitdw-advisory-pilot) | [41193966981](https://github.com/Champion-of-the-Pajama-Mountain-Race/AstrBot/actions/runs/41193966981) | **success** | queued, not executed |
 
 Both branches were created via the connected GitHub account with write permission. Each has `.github/workflows/jitdw-runner-probe.yml` scoped to a **push on the pilot branch when that file changes**. The probe has read-only permissions and executes **no checkout or project code**; the hosted job prints basic versions, and the self-hosted job would check tool presence and versions only if GitHub schedules it.
@@ -73,4 +73,12 @@ If jobs remain queued, they can be canceled from each workflow's Actions page; G
 - Full Codex/AstrBot builds: **not attempted**; no package absence should be claimed.
 - Organization self-hosted on these Forks: **not scheduled**, so tool presence cannot be measured.
 
-A passing probe does not equal passing the respective project's native test suites.
+A passing probe does not equal passing the respective project's native test suites.## Hosted-only follow-up after removing public self-hosted jobs
+
+- [Codex hosted-only run 41195225991](https://github.com/Champion-of-the-Pajama-Mountain-Race/codex/actions/runs/41195225991) — **success**, branch commit `3b72eddabbb95f4c2e60907d6bd15c7833b72e9c`.
+- [AstrBot hosted-only run 41195230456](https://github.com/Champion-of-the-Pajama-Mountain-Race/AstrBot/actions/runs/41195230456) — **success**, branch commit `a8aaeb2aaac6752335f811e40d821a4c6bbbcfac`.
+- Earlier public-Fork runs 41193961696 and 41193966981 were cancelled after having queued; no self-hosted probe step executed in either Fork.
+
+This ensures the research branches do not retain a self-hosted job that might later execute if organization Runner access changes.
+
+
