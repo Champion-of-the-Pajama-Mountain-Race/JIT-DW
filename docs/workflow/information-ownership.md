@@ -1,6 +1,6 @@
 # Information ownership and source of truth
 
-**Status:** Revised after the first repository field-study tranche.
+**Status:** Updated after Codex/AstrBot source-level Round 3 observations.
 
 The same fact can appear in source code, schemas, comments, generated API references, tutorials, architecture documents, and runbooks. Repeating a volatile fact in several manually maintained places creates synchronization work and ambiguity.
 
@@ -103,3 +103,13 @@ The Chromium base/task README is an example of a concise directory map rather th
 Possible ownership mechanisms include CODEOWNERS, OWNERS, maintainers listed in a document, directory-level ownership files, or review routing. The field studies will determine which mechanisms are used in practice and their limits.
 
 Avoid adding a manually maintained owner field to every document unless it changes review behavior or makes responsibility clearer.
+
+## 9. Runtime-consumed documentation
+
+An important exception to the ordinary prose model: a comment or docstring can be **input to software execution**. [AstrBot's LLM tool registration](https://github.com/AstrBotDevs/AstrBot/blob/734b357fe30963365494df0c0603844e708730f3/astrbot/core/star/register/star_handler.py#L650-L700) parses a Python function's docstring to construct a tool argument schema. The parser may change runtime behavior if a docstring is modified, even when code signatures are unchanged.
+
+For such a **machine-consumed contract**, record the parser/consumer, allowed syntax, generated/runtime behavior, applicable versions, and executable tests. Treat docstring-only edits as potential code-contract changes. Do not generalize this rule to ordinary explanatory comments.
+
+For schema generators, capture **input sets, generator command/version, output sets, and file-tree equality checks**. Codex's [schema fixture tests](https://github.com/openai/codex/blob/67f0994b532b8740f14b5b738af7b7b2a915b1d6/codex-rs/app-server-protocol/src/schema_fixtures_tests.rs) demonstrate that deleting stale generated output is part of consistency, not an optional cleanup.
+
+See [validation provenance](validation-provenance.md) for check phase, execution evidence and Runner trust restrictions.
