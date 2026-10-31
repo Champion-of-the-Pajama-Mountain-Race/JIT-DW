@@ -34,6 +34,16 @@ Do not promote a hypothesis to an observed practice merely because it sounds rea
 - [Design decisions](docs/decisions/README.md) — decisions and unresolved questions.
 - [Validation plan](validation/README.md) — how the workflow will be tested in real projects.
 
+## Round 3: Codex / AstrBot source verification
+
+The first two project Forks have successful hosted Runner probes; the existing organization self-hosted Runner is not confirmed eligible for these public Forks. The third research round separates [JIT-DW ideas validated by real source/PR evidence from mechanisms we had not sufficiently modeled](research/round-3/codex-astrbot-comparison.md). Key additions: **machine-consumed docstrings, full generated artifact-tree consistency, actual CI execution/coverage, multilingual UI navigation, and Runner trust boundaries**.
+
+- [Evidence and contrast](research/round-3/codex-astrbot-comparison.md)
+- [Validation provenance design](docs/workflow/validation-provenance.md)
+- [Actual Runner probes and security boundary](validation/pilots/codex-astrbot/runner-probe.md)
+
+This is still advisory research; passing a Runner probe does not mean the full Codex or AstrBot test suite passed.
+
 ## Live pilot preparation — Codex and AstrBot
 
 The first retrospective pilot [compares real Codex and AstrBot PRs](validation/pilots/codex-astrbot/README.md), includes eight pinned change-file fixtures, and runs a [stdlib-only advisory router](tools/jitdw_advisor.py). It deliberately produces reviewer questions, not automatic claims that a documentation file must be edited. Its [test workflow](.github/workflows/jitdw-advisory-tests.yml) runs on JIT-DW pull requests.
