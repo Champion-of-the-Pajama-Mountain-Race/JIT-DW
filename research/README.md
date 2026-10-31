@@ -59,7 +59,7 @@ For each project:
    - public API or schema definitions;
    - tests and examples;
    - generated documentation inputs and outputs.
-5. Inspect a small number of relevant PRs or commit histories to see whether docs change with code.
+5. Inspect a small number of relevant PRs or commits to see whether docs change with code.
 6. Compare observed practice with published guidance (for example Diátaxis, C4, Docs as Code, or the project's own policy).
 7. Record counterexamples, gaps, and maintenance trade-offs.
 8. Write a bounded conclusion: what the evidence supports, what it does not support, and what needs further inspection.
@@ -81,6 +81,19 @@ Each claim should link to a specific file or commit and, where possible, a line 
 - comparing projects without accounting for language, scale, safety requirements, and release model;
 - copying a practice without recording its trade-offs.
 
-## 7. Candidate field studies
+## 7. First field-study tranche
 
-See target-projects.md. The list is a research queue, not a ranking or a statement that these projects follow JIT-DW principles.
+The first source-based case studies are now available:
+
+- Google OpenDocs — planning methods and documentation project archetypes.
+- The Good Docs Project — reusable templates and their authoring process.
+- Linux kernel — structured source comments and generated API reference.
+- Chromium — layered component/interface/implementation documentation.
+- CPython — overlapping source docstrings and separate library reference.
+- Rust — public API comments and executable documentation tests.
+- Kubernetes — API field comments, structured markers, and verification scripts.
+- Django — reader-oriented docs, feature PRs, and documentation tooling.
+
+See [the evidence register](evidence-register.md) for pinned revisions and [the synthesis](findings-v0.1.md) for cross-project conclusions.
+
+These are bounded samples, not exhaustive audits. The next tranche must inspect more PR/CL history and follow actual changes across source, tests, generated output, reference docs, and release notes.

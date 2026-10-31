@@ -1,12 +1,31 @@
 # Information ownership and source of truth
 
-**Status:** Provisional design principle; repository field studies will test how projects implement it.
+**Status:** Revised after the first repository field-study tranche.
 
-The same fact can appear in source code, schemas, comments, generated API references, tutorials, architecture documents, and runbooks. Repeating a volatile fact in many manually maintained places creates synchronization work and ambiguity.
+The same fact can appear in source code, schemas, comments, generated API references, tutorials, architecture documents, and runbooks. Repeating a volatile fact in several manually maintained places creates synchronization work and ambiguity.
 
-JIT-DW therefore proposes assigning one authoritative home to each important fact, then treating other appearances as derived explanations or views.
+However, the first field studies show that a strict rule of one fact appearing in only one file is too simple. CPython has both module docstrings and a separate library reference; Django has source docstrings and richer user-facing reference pages; Linux and Rust use source comments as inputs to generated API documentation.
 
-## 1. Choose authority by information type
+JIT-DW therefore distinguishes **authoritative authoring source** from **reader-facing representation**.
+
+## 1. The two-layer model
+
+For each important fact, identify:
+
+1. **Authority:** where the fact is authored or where its semantics are defined.
+2. **Representations:** where readers encounter that fact, including generated pages, short summaries, tutorials, examples, and operational guides.
+
+A fact may have more than one representation. It should not have multiple independently edited authorities unless the project deliberately defines how they are reconciled.
+
+Examples:
+
+- A Rust API comment is an authoring source for rustdoc output; doctests validate its examples.
+- A Linux kernel-doc comment is an authoring source for generated API reference.
+- A Python module docstring and a library reference may both repeat stable facts for different reader surfaces. The project must understand and manage that overlap.
+- A Django source class docstring may be brief while the separate reference page explains user-visible semantics in more detail.
+- A Kubernetes field comment and structured marker can define field-level API information, while a separate conventions document explains rules that span many fields.
+
+## 2. Choose authority by information type
 
 | Information | Candidate authoritative home | Other useful representations |
 |---|---|---|
@@ -19,9 +38,23 @@ JIT-DW therefore proposes assigning one authoritative home to each important fac
 | Operational recovery procedure | Runbook validated against deployed system | Short links from service documentation |
 | User task | User-facing tutorial or how-to | Product entry point and navigation |
 
-This table is a starting point, not a universal prescription. Some projects use source annotations, schemas, tests, or build configuration as their primary documentation mechanism.
+This table is a starting point, not a universal prescription. Some projects use source annotations, schemas, tests, build configuration, or hand-authored manuals as their primary documentation mechanism.
 
-## 2. Separate current truth from historical rationale
+## 3. Rules for multiple representations
+
+When the same fact appears in more than one place, record:
+
+- why each representation exists and which reader it serves;
+- which representation is authoritative for the underlying behavior;
+- whether the secondary representation is generated, copied, summarized, or independently authored;
+- how synchronization is checked;
+- what change should trigger review of each representation.
+
+Do not delete a representation merely because another copy exists. First determine whether it serves a distinct reading context, such as interactive help, generated API reference, onboarding, or a user-facing manual.
+
+Do not leave duplicated volatile facts without an explicit synchronization plan.
+
+## 4. Separate current truth from historical rationale
 
 A decision record explains why a decision was made at a point in time. It should not automatically be treated as a description of the current implementation.
 
@@ -32,18 +65,21 @@ When a decision is reversed:
 - update the current architecture or module documentation;
 - mark the old decision as superseded and link to the replacement.
 
-## 3. Prefer derivation over copying
+Chromium's documentation guidance is a useful example: once code is implemented, design documents become archives of the decision rather than current implementation documentation.
+
+## 5. Prefer derivation where it improves reliability
 
 When practical, generate stable technical details from the source that owns them:
 
 - API signatures from code or interface definitions;
 - configuration references from schemas or declarative configuration;
 - command help from the CLI implementation;
-- diagrams or inventories from machine-readable data only when the generated result is genuinely easier to maintain.
+- API pages from structured source comments;
+- examples from executable test blocks.
 
 Generation is not automatically better. A generated page that is hard to navigate or omits the explanation readers need is not a good substitute for authored documentation.
 
-## 4. Resolve conflicts explicitly
+## 6. Resolve conflicts explicitly
 
 If two artifacts disagree:
 
@@ -54,14 +90,16 @@ If two artifacts disagree:
 
 Do not resolve a conflict by assuming the newest file is correct.
 
-## 5. Locality and central navigation
+## 7. Locality and central navigation
 
 Keep detailed module knowledge near the module when contributors naturally work there. Use central architecture pages and indexes to explain cross-module relationships and provide navigation.
 
-A local README should answer "what is this directory and where should I go next?", not reproduce every function and internal detail.
+A local README should answer what this directory is, what its main boundaries are, and where a reader should go next. It should not reproduce every function and internal detail.
 
-## 6. Ownership metadata
+The Chromium base/task README is an example of a concise directory map rather than a per-file catalog.
 
-Possible ownership mechanisms include CODEOWNERS, maintainers listed in a document, directory-level ownership files, or review routing. The field studies will determine which mechanisms are used in practice and their limits.
+## 8. Ownership metadata
+
+Possible ownership mechanisms include CODEOWNERS, OWNERS, maintainers listed in a document, directory-level ownership files, or review routing. The field studies will determine which mechanisms are used in practice and their limits.
 
 Avoid adding a manually maintained owner field to every document unless it changes review behavior or makes responsibility clearer.
