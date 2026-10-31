@@ -1,6 +1,6 @@
 # Codex + AstrBot: retrospective pilot baseline
 
-**Status:** Upstream diff inspection and local prototype tests completed. Fork creation and fork-based CI execution remain blocked by current GitHub connector capabilities. This is *not* a validated accuracy result.
+**Status:** Upstream diff inspection, local prototype tests, and GitHub-hosted prototype CI completed. Fork creation and fork-based CI execution remain blocked by current GitHub connector capabilities. This is *not* a validated accuracy result.
 
 **Inspected:** 2026-10-31. Both targets were confirmed publicly readable:
 - https://github.com/openai/codex (default branch main)
@@ -56,7 +56,7 @@ Run from the JIT-DW checkout:
     python tools/jitdw_advisor.py --profile codex --input validation/pilots/codex-astrbot/fixtures/codex-linux-sandbox-pr52610.json
     python tools/jitdw_advisor.py --profile astrbot --input validation/pilots/codex-astrbot/fixtures/astrbot-reload-pr10788.json --format json
 
-**Local results:** the same 14 unittest cases were run on the isolated Python environment and passed. This checks code behavior, **not** the correctness of predicted documentation impact. GitHub Actions has not yet been observed running this workflow.
+**Verified results:** 14 Python unittest cases passed locally. The same test suite and sample CLI generation also passed on a GitHub-hosted Ubuntu runner in [JIT-DW Actions run 41186150913](https://github.com/Champion-of-the-Pajama-Mountain-Race/JIT-DW/actions/runs/41186150913) for commit 21d1a6c957f62f6867eb7f11f56cec8d1f0a8c77. This validates the prototype's mechanical behavior, **not** the correctness of predicted documentation impact.
 
 ## Measurement and acceptance
 
