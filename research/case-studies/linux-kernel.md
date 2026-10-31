@@ -21,7 +21,8 @@ The kernel has a long-lived C codebase, public headers, in-tree documentation, a
 | E1 | P | [Writing kernel-doc comments](https://github.com/torvalds/linux/blob/a9547379cb381e2a036e3261a6becc17973ac470/Documentation/doc-guide/kernel-doc.rst#L9-L58) | Structured comments describe functions, types, and design; they are extracted into Sphinx C-domain reference documentation; placement near declarations is intentional. |
 | E2 | C/I | [include/linux/kref.h](https://github.com/torvalds/linux/blob/a9547379cb381e2a036e3261a6becc17973ac470/include/linux/kref.h#L49-L63) | kref_put's comment documents arguments, callback restrictions, behavior, and return-value caveats. |
 | E3 | D | [kref guide](https://github.com/torvalds/linux/blob/a9547379cb381e2a036e3261a6becc17973ac470/Documentation/core-api/kref.rst#L14-L65) | A separate guide explains the reference-counting concept, initialization, and usage rules. |
-| E4 | H | [kref: Improve documentation](https://github.com/torvalds/linux/commit/b76d32422c09bc9310f61a5a89671975db34bd2a) | One commit changed both the header comments and kref.rst; its message says the kernel-doc comments existed but were not linked into the HTML documentation. |
+| E4 | D/A | [kernel-doc inclusion in kref.rst](https://github.com/torvalds/linux/blob/a9547379cb381e2a036e3261a6becc17973ac470/Documentation/core-api/kref.rst#L324-L329) | The conceptual guide explicitly includes the source header's kernel-doc comments in the rendered reference. |
+| E5 | H | [kref: Improve documentation](https://github.com/torvalds/linux/commit/b76d32422c09bc9310f61a5a89671975db34bd2a) | One commit changed both the header comments and kref.rst; its message says the kernel-doc comments existed but were not linked into the HTML documentation. |
 
 ## 4. What the project actually does
 
