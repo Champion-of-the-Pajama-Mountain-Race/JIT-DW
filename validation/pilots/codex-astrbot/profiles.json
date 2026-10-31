@@ -15,7 +15,8 @@
           "API comments/versioning",
           "generated JSON, TypeScript, and Python schemas",
           "app-server README/client examples if reader behavior changed",
-          "protocol/integration tests"
+          "protocol/integration tests",
+          "generated file-set and content equality checks"
         ],
         "basis": "Codex PR #57172 changes runtime events, generated types, app-server README, and tests. It does not imply every representation needs editing every time."
       },
@@ -65,6 +66,19 @@
           "contributor workflow"
         ],
         "basis": "Codex PR #43423 removed blanket app-server docs update guidance but retained schema-regeneration guidance."
+      },
+      {
+        "id": "argument-comment-contract",
+        "patterns": [
+          "tools/argument-comment-lint/**"
+        ],
+        "question": "Does a callsite /*parameter*/ comment match the resolved callee argument, and could the API be self-documenting instead?",
+        "review_surfaces": [
+          "AST-backed lint behavior and negative tests",
+          "actual CI stage and compiler-toolchain cost",
+          "whether comments are needed"
+        ],
+        "basis": "Codex tools/argument-comment-lint/README.md describes comment/name mismatch detection and explicitly prefers self-explaining API design."
       }
     ]
   },
@@ -150,6 +164,21 @@
           "actual reader task"
         ],
         "basis": "AstrBot PR #10879 updated seven translated READMEs and two SerpApi guides without runtime code changes."
+      },
+      {
+        "id": "llm-tool-docstring-runtime-contract",
+        "patterns": [
+          "astrbot/core/star/register/star_handler.py",
+          "docs/zh/dev/star/guides/ai.md",
+          "docs/en/dev/star/guides/ai.md"
+        ],
+        "question": "Is a function docstring parsed into an LLM tool argument schema? Could a docstring-only change affect runtime invocation?",
+        "review_surfaces": [
+          "parsed Args and resulting JSON argument schema",
+          "valid/malformed docstring parser tests",
+          "tool invocation with model-provided parameters"
+        ],
+        "basis": "AstrBot star_handler.py parses awaitable.__doc__ using docstring_parser; its developer guide warns that malformed Args can silently drop arguments."
       }
     ]
   }
