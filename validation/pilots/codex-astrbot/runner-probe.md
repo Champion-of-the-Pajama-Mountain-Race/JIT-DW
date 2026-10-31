@@ -17,6 +17,28 @@ That validates **this private repo**, not permission to schedule jobs from the p
 
 GitHub documents that a self-hosted job remains queued until an eligible runner is available, with a [24-hour queue limit](https://docs.github.com/en/actions/reference/runners/self-hosted-runners).
 
+## Trusted private-repo toolchain probe (completed)
+
+To distinguish missing packages from public-Fork Runner-group restrictions, we created a separate isolated branch in the **private** Bot_R_A_D repository. Its [workflow run 41194851961](https://github.com/Champion-of-the-Pajama-Mountain-Race/Bot_R_A_D/actions/runs/41194851961) **succeeded** on self-hosted Runner `org-linux-03` (also in group `default`, machine `Bot`). No checkout, repository code, secrets or privileged build commands were involved.
+
+| Tool | Observed version or status |
+|---|---|
+| Git | 2.53.0 |
+| Python 3 | 3.14.4 |
+| uv | 0.12.5 |
+| rustup | 1.29.0 |
+| rustc / Cargo | 1.98.0 |
+| Node.js | 22.23.4 |
+| npm / pnpm | Commands present; version lines obscured by an experimental proxy warning |
+| just | **missing from PATH** |
+| bazel | **missing from PATH** |
+| bazelisk | **missing from PATH** |
+| dotslash | **missing from PATH** |
+
+These are real environment observations for `org-linux-03`, **not** proof of the same PATH state on every other Runner instance. Codex's documented source-build helpers include just, DotSlash, cargo-nextest, and Bazel-based CI; further installation is only needed if a trusted Codex build is deliberately scheduled on that machine. The JIT-DW Python advisory trial has no such dependency and already passes on hosted runners.
+
+This private-repo probe confirms self-hosted scheduling works inside an eligible private repository. It does not resolve the public-Fork queued jobs, which should not be "fixed" by broadening persistent Runner access.
+
 ## Security decision
 
 **Do not grant these public Forks access to the existing persistent organization Runner just to clear a queued smoke test.** GitHub [recommends self-hosted runners primarily for private repos](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/manage-access), because untrusted public pull requests can compromise a self-hosted machine. For the next JIT-DW experiments, use hosted Ubuntu; a separate ephemeral, isolated Runner is the alternative for a costly build.
