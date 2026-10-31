@@ -109,6 +109,18 @@ Remaining risk: <none known, or explicit gap + owner>
 
 **Caution:** A PR description can become stale while the patch evolves. For consequential changes, re-check the final diff and tests. In Django PR #21855, the PR body and final 307/308 redirect test coverage describe different states of the work.
 
+## Machine-consumed comments and CI execution provenance (Round 3)
+
+A source docstring may be part of **runtime behavior**, not passive documentation. In AstrBot, `@filter.llm_tool` registration parses Python docstrings to produce LLM tool parameter schemas. When such a docstring changes, inspect its parser, resulting schema, and valid/malformed-input tests. Do not assume a change is "docs-only" merely because it touches comments.
+
+When schemas or clients are generated, verify the **complete expected output set**, including deleted obsolete files, not only that a regeneration command completed. Codex's schema-fixture tests regenerate file trees and compare their contents.
+
+When evaluating CI, record whether the relevant check **ran** on the reviewed revision: success / failure / skipped / queued / not triggered; include its trigger, phase, file coverage, and Runner trust class. A release-only docs job or a fork-disabled job cannot be credited as PR-time verification.
+
+Do not send untrusted public Fork PR code to the organization's persistent self-hosted Runner. Prefer GitHub-hosted or isolated ephemeral Runners for public projects.
+
+See [validation provenance](validation-provenance.md), [Codex/AstrBot source cases](../../research/round-3/codex-astrbot-comparison.md), and [runner evidence](../../validation/pilots/codex-astrbot/runner-probe.md).
+
 ## Pilot rules
 
 Do not enable a blocking “docs changed” gate from path heuristics alone. Initially report advisory proposed outcomes and compare them with maintainer assessment. Track false positives, false negatives, time spent, and uncertain cases. See [validation plan](../../validation/README.md).
