@@ -1,5 +1,7 @@
 # Research method
 
+> **Research supports the [developer Guide](../guide/README.md); it is not the product's mandatory workflow.** We examine mature projects to understand the reason behind useful documentation choices, their trade-offs, and when not to transfer them.
+
 **Status:** Research protocol. No project-level conclusions should be treated as findings until supported by case-study evidence.
 
 The central requirement of this research is to inspect what open-source projects actually maintain—not only what their documentation guidelines say they should maintain.
@@ -107,3 +109,9 @@ Read the [V0.2 synthesis](findings-v0.2.md) for the revised conclusions and the 
 ## 9. Round 3: Codex/AstrBot Fork-based source comparison
 
 The [third-round comparison](round-3/codex-astrbot-comparison.md) explicitly separates JIT-DW ideas corroborated by actual Codex/AstrBot files and PRs from mechanisms our initial model did not handle well: runtime-parsed docstrings, AST-checked inline hints, complete generated artifact closure, multilingual UI navigation, and actual CI execution/coverage. The [Runner report](../validation/pilots/codex-astrbot/runner-probe.md) records successful hosted probes on both public Forks and a successful private-repository toolchain inspection on the existing self-hosted Runner. This does **not** demonstrate lower documentation cost or a measured impact-prediction accuracy rate.
+
+## Round 4 — turning evidence into guidance
+
+[Round 4](round-4/README.md) traces how source-backed observations in Django, Rust, Chromium, Codex, AstrBot, Google OpenDocs and The Good Docs Project became practical Guide advice and optional recipes. The direction is recorded in [Decision 0001](../docs/decisions/0001-guide-first.md).
+
+Future research should first ask what a developer can **do differently** and what reader problem it solves, not what new document or automatic check can be required.
