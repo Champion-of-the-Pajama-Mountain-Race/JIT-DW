@@ -1,0 +1,12 @@
+{
+  "upstream": "openai/codex",
+  "pr": 49361,
+  "changed_files": [
+    "codex-rs/cli/src/doctor/output/detail.rs",
+    "codex-rs/login/src/auth/manager.rs",
+    "codex-rs/tui/src/onboarding/auth.rs",
+    "codex-rs/tui/src/onboarding/snapshots/codex_tui__onboarding__auth__tests__api_key_entry.snap",
+    "codex-rs/tui/src/startup_preflight.rs"
+  ],
+  "file_list_scope": "subset"
+}

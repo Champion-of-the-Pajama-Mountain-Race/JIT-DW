@@ -1,0 +1,12 @@
+{
+  "upstream": "AstrBotDevs/AstrBot",
+  "pr": 10685,
+  "changed_files": [
+    "astrbot/core/config/default.py",
+    "astrbot/core/utils/pip_installer.py",
+    "dashboard/src/i18n/locales/en-US/features/config-metadata.json",
+    "dashboard/src/i18n/locales/zh-CN/features/config-metadata.json",
+    "tests/test_pip_installer.py"
+  ],
+  "file_list_scope": "subset"
+}

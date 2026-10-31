@@ -1,0 +1,16 @@
+{
+  "upstream": "AstrBotDevs/AstrBot",
+  "pr": 10879,
+  "changed_files": [
+    "README.md",
+    "README_es.md",
+    "README_fr.md",
+    "README_ja.md",
+    "README_ru.md",
+    "README_zh-TW.md",
+    "README_zh.md",
+    "docs/en/use/websearch/serpapi.md",
+    "docs/zh/use/websearch/serpapi.md"
+  ],
+  "file_list_scope": "complete"
+}

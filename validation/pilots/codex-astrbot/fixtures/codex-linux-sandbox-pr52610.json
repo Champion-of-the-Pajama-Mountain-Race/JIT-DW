@@ -1,0 +1,14 @@
+{
+  "upstream": "openai/codex",
+  "pr": 52610,
+  "changed_files": [
+    "codex-rs/linux-sandbox/README.md",
+    "codex-rs/linux-sandbox/src/lib.rs",
+    "codex-rs/linux-sandbox/src/linux_run_main.rs",
+    "codex-rs/linux-sandbox/src/linux_run_main_tests.rs",
+    "codex-rs/linux-sandbox/src/seccomp.rs",
+    "codex-rs/linux-sandbox/tests/suite/mod.rs",
+    "codex-rs/linux-sandbox/tests/suite/sandbox.rs"
+  ],
+  "file_list_scope": "complete"
+}
