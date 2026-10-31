@@ -1,0 +1,20 @@
+{
+  "upstream": "AstrBotDevs/AstrBot",
+  "pr": 10775,
+  "changed_files": [
+    "astrbot/api/provider/__init__.py",
+    "astrbot/core/provider/decision.py",
+    "astrbot/core/provider/manager.py",
+    "astrbot/core/star/context.py",
+    "astrbot/dashboard/services/config_service.py",
+    "dashboard/src/views/ProviderPage.vue",
+    "dashboard/src/i18n/locales/zh-CN/features/provider.json",
+    "docs/en/dev/star/guides/ai.md",
+    "docs/zh/dev/star/guides/ai.md",
+    "docs/zh/use/webui.md",
+    "openspec/openapi-v1.yaml",
+    "docs/public/openapi.json",
+    "tests/test_decision_provider.py"
+  ],
+  "file_list_scope": "subset"
+}

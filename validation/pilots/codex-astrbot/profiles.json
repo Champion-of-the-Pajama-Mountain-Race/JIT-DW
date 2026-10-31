@@ -1,0 +1,156 @@
+{
+  "codex": {
+    "upstream": "openai/codex",
+    "rules": [
+      {
+        "id": "app-server-contract",
+        "patterns": [
+          "codex-rs/app-server-protocol/**",
+          "codex-rs/app-server/src/**",
+          "codex-rs/app-server/README.md",
+          "sdk/python/src/openai_codex/generated/**"
+        ],
+        "question": "Did an app-server protocol contract, serialized event, schema, or client behavior change?",
+        "review_surfaces": [
+          "API comments/versioning",
+          "generated JSON, TypeScript, and Python schemas",
+          "app-server README/client examples if reader behavior changed",
+          "protocol/integration tests"
+        ],
+        "basis": "Codex PR #57172 changes runtime events, generated types, app-server README, and tests. It does not imply every representation needs editing every time."
+      },
+      {
+        "id": "linux-sandbox-boundary",
+        "patterns": [
+          "codex-rs/linux-sandbox/**"
+        ],
+        "question": "Did security enforcement, platform support, or sandbox component terminology change?",
+        "review_surfaces": [
+          "linux-sandbox README",
+          "Rustdoc/source comments",
+          "sandbox/security tests",
+          "migration guidance if external behavior changed"
+        ],
+        "basis": "Codex PR #52610 updates local source comments, module README and tests while renaming implementation; enforcement is stated unchanged."
+      },
+      {
+        "id": "auth-persistence-copy",
+        "patterns": [
+          "codex-rs/login/**",
+          "codex-rs/tui/src/onboarding/**",
+          "codex-rs/tui/src/startup_preflight.rs",
+          "codex-rs/cli/src/doctor/**"
+        ],
+        "question": "Does user-facing authentication/storage/error wording still reflect the selected backend?",
+        "review_surfaces": [
+          "UI copy and snapshots",
+          "source comments",
+          "relevant user help only when contradicted",
+          "error/security tests"
+        ],
+        "basis": "Codex PR #49361 corrected auth.json wording in UI/CLI output without standalone Markdown changes."
+      },
+      {
+        "id": "governance-guidance",
+        "patterns": [
+          "AGENTS.md",
+          "**/AGENTS.md",
+          "docs/**",
+          ".github/workflows/**"
+        ],
+        "question": "Is this an instruction/documentation/CI change rather than an observable runtime API contract change?",
+        "review_surfaces": [
+          "instruction scope",
+          "real build/check behavior",
+          "contributor workflow"
+        ],
+        "basis": "Codex PR #43423 removed blanket app-server docs update guidance but retained schema-regeneration guidance."
+      }
+    ]
+  },
+  "astrbot": {
+    "upstream": "AstrBotDevs/AstrBot",
+    "rules": [
+      {
+        "id": "plugin-provider-contract",
+        "patterns": [
+          "astrbot/api/**",
+          "astrbot/core/star/**",
+          "astrbot/core/provider/**"
+        ],
+        "question": "Did a plugin-facing API, provider behavior, error contract, or configuration change?",
+        "review_surfaces": [
+          "source docstrings/tests",
+          "Chinese/English developer guides",
+          "provider configuration/UI if relevant",
+          "compatibility guidance"
+        ],
+        "basis": "AstrBot PR #10775 documents Decision Provider in source and bilingual plugin guides."
+      },
+      {
+        "id": "dashboard-config-api",
+        "patterns": [
+          "astrbot/dashboard/**",
+          "dashboard/src/api/**",
+          "docs/public/openapi.json",
+          "openspec/**"
+        ],
+        "question": "Did a backend route, response behavior, API schema, or error contract change?",
+        "review_surfaces": [
+          "HTTP regression tests",
+          "OpenAPI/client generation only if schema changed",
+          "user-facing failure guidance if relevant"
+        ],
+        "basis": "AstrBot PR #10788 changes reload failure responses and adds HTTP tests without altering the success response schema."
+      },
+      {
+        "id": "webui-navigation-localization",
+        "patterns": [
+          "dashboard/src/views/**",
+          "dashboard/src/composables/**",
+          "dashboard/src/i18n/**",
+          "docs/zh/use/**",
+          "docs/en/use/**"
+        ],
+        "question": "Did WebUI navigation, label text, page layout or user task steps change?",
+        "review_surfaces": [
+          "Chinese and English docs",
+          "screenshots/navigation mappings/changelog if renaming",
+          "localized UI labels"
+        ],
+        "basis": "AstrBot CONTRIBUTING ties WebUI changes to docs/zh and docs/en updates."
+      },
+      {
+        "id": "dependency-install-security",
+        "patterns": [
+          "astrbot/core/utils/pip_installer.py",
+          "astrbot/core/config/default.py"
+        ],
+        "question": "Did TLS trust, package source selection, credentials, or a config default change?",
+        "review_surfaces": [
+          "security/failure tests",
+          "config descriptions/localization",
+          "user manual if usage changed"
+        ],
+        "basis": "AstrBot PR #10685 removed the --trusted-host exception and updated configuration labels and tests."
+      },
+      {
+        "id": "translated-public-docs",
+        "patterns": [
+          "README*",
+          "docs/zh/**",
+          "docs/en/**",
+          "docs/zh-TW/**",
+          "docs/public/**"
+        ],
+        "question": "Should another language or entry point be synchronized with this documentation update?",
+        "review_surfaces": [
+          "equivalent locale pages",
+          "link targets",
+          "actual reader task"
+        ],
+        "basis": "AstrBot PR #10879 updated seven translated READMEs and two SerpApi guides without runtime code changes."
+      }
+    ]
+  }
+}

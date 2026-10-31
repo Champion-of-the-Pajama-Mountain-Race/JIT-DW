@@ -1,0 +1,9 @@
+{
+  "upstream": "AstrBotDevs/AstrBot",
+  "pr": 10788,
+  "changed_files": [
+    "astrbot/dashboard/services/config_service.py",
+    "tests/test_fastapi_v1_dashboard.py"
+  ],
+  "file_list_scope": "complete"
+}

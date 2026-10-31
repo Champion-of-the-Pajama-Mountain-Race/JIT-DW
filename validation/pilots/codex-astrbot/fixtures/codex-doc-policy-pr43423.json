@@ -1,0 +1,8 @@
+{
+  "upstream": "openai/codex",
+  "pr": 43423,
+  "changed_files": [
+    "AGENTS.md"
+  ],
+  "file_list_scope": "complete"
+}
