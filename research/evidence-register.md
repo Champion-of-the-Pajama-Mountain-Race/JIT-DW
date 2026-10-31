@@ -20,3 +20,16 @@ This register lists the pinned repository revisions and the principal artifacts 
 - Record whether a source is policy, maintained docs, code comment, implementation, test, automation, or history.
 - A project guide is evidence of stated policy, not proof of compliance.
 - A single code sample is evidence of an example, not proof of project-wide consistency.
+
+## Round 2 additions (history + review routing)
+
+- [Change-history sample](round-2/change-history-sample.md): 11 deliberately selected changes, with explicit uncertainty and no population statistic.
+- [Django QUERY trace](round-2/django-query-end-to-end.md): [PR #21855](https://github.com/django/django/pull/21855), actual changed-file patches, reviewer conversation, tests, release notes, deferred caching.
+- [Django docs tooling drift](round-2/django-doc-tooling-drift.md): [PR #22111](https://github.com/django/django/pull/22111), Sphinx source discovery, lint/format wrappers, tox, Windows workflow.
+- [CPython CODEOWNERS](https://github.com/python/cpython/blob/4a9b98115fec4d93c32c554aa541d6c3fc4c3b27/.github/CODEOWNERS#L13-L31) and [heapq routing](https://github.com/python/cpython/blob/4a9b98115fec4d93c32c554aa541d6c3fc4c3b27/.github/CODEOWNERS#L483-L489).
+- [Chromium component OWNERS](https://github.com/chromium/chromium/blob/cebb23461ac11d291f8eac596e6b73283c167b4d/base/task/OWNERS) and [componentized header contracts](https://github.com/chromium/chromium/blob/cebb23461ac11d291f8eac596e6b73283c167b4d/components/page_content_annotations/content/renderer/page_stability_monitor.h#L25-L57).
+- [Kubernetes API OWNERS](https://github.com/kubernetes/kubernetes/blob/f2319f5ce54c9eb4c0438837698fa70e22e34b36/staging/src/k8s.io/api/OWNERS) and [docs OWNERS](https://github.com/kubernetes/kubernetes/blob/f2319f5ce54c9eb4c0438837698fa70e22e34b36/docs/OWNERS).
+- [Rust rustdoc triagebot routing](https://github.com/rust-lang/rust/blob/92b5b8c87c61b20adc9001b41baf587634a74734/triagebot.toml#L251-L282).
+- [Linux MAINTAINERS format](https://github.com/torvalds/linux/blob/a9547379cb381e2a036e3261a6becc17973ac470/MAINTAINERS#L1-L55) and [get_maintainer.pl](https://github.com/torvalds/linux/blob/a9547379cb381e2a036e3261a6becc17973ac470/scripts/get_maintainer.pl#L1-L12).
+
+Routing configuration is evidence of declared reviewer/approver paths, **not proof** that a particular PR received or satisfied a review.

@@ -96,4 +96,10 @@ The first source-based case studies are now available:
 
 See [the evidence register](evidence-register.md) for pinned revisions and [the synthesis](findings-v0.1.md) for cross-project conclusions.
 
-These are bounded samples, not exhaustive audits. The next tranche must inspect more PR/CL history and follow actual changes across source, tests, generated output, reference docs, and release notes.
+These are bounded samples, not exhaustive audits.
+
+## 8. Second research tranche
+
+The next stage inspects real commits, review comments, and responsibility-routing configuration. Its results are available in [Round 2](round-2/README.md), including a [curated change-history sample](round-2/change-history-sample.md), a [Django HTTP QUERY end-to-end trace](round-2/django-query-end-to-end.md), and [ownership/review-routing evidence](round-2/ownership-and-review-routing.md).
+
+Read the [V0.2 synthesis](findings-v0.2.md) for the revised conclusions and the [advisory impact-review protocol](../docs/workflow/impact-review-protocol.md) for a testable procedure. These are still hypotheses to validate in pilots; they are not production-compliance statistics.

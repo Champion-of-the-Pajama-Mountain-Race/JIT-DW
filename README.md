@@ -34,6 +34,14 @@ Do not promote a hypothesis to an observed practice merely because it sounds rea
 - [Design decisions](docs/decisions/README.md) — decisions and unresolved questions.
 - [Validation plan](validation/README.md) — how the workflow will be tested in real projects.
 
+## Current research
+
+- [Repository field-study synthesis V0.2](research/findings-v0.2.md): actual PR/commit evidence and revisions to our hypotheses.
+- [Second-round research](research/round-2/README.md): change histories, documentation ownership and review routing, Django end-to-end trace, and tooling drift.
+- [Provisional impact-review protocol](docs/workflow/impact-review-protocol.md): a concrete advisory procedure to test in real changes.
+
+This is still research work, not a validated enforcement standard. A passing automated check does not mean the prose is semantically correct.
+
 ## Core research question
 
 Can a project keep documentation sufficiently accurate and easy to navigate by connecting documentation work to real development changes—without requiring every code change to update every document, and without creating a larger maintenance burden than the code itself?

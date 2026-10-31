@@ -107,7 +107,7 @@ Examples:
 - an internal refactor may require no user-facing documentation change, but may still change an invariant or module contract;
 - a documentation-only clarification may be appropriate even when code does not change.
 
-Use change-impact.md as a provisional decision aid.
+Use [change-impact.md](change-impact.md) as a provisional decision aid. The [Round 2 impact-review protocol](impact-review-protocol.md) turns the decision into an advisory, evidence-backed sequence for real PRs. Do not turn the protocol into a blocking gate until a pilot has measured its errors and overhead.
 
 ## Stage 6 — Validate
 

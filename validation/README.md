@@ -37,16 +37,45 @@ Record success, time, wrong turns, missing information, and whether a maintainer
 | Measure | Operational definition | Why it matters |
 |---|---|---|
 | Discovery success | Participant finds the authoritative artifact without maintainer intervention | Tests navigation and information ownership. |
-| Change-impact precision | Relevant docs identified / all docs judged relevant after expert review | Tests whether the workflow avoids both misses and needless updates. |
-| Change-impact recall | Relevant docs identified / all docs judged relevant after expert review | Tests whether important updates are missed. |
+| Change-impact precision | True positives / (true positives + false positives): relevant docs correctly proposed / all docs proposed | Tests whether the workflow avoids needless updates. |
+| Change-impact recall | True positives / (true positives + false negatives): relevant docs correctly proposed / all docs judged relevant after expert review | Tests whether important updates are missed. |
 | Stale-information defects | Verified conflicts between docs and current intended behavior | Tests documentation accuracy. |
 | Task completion | Participant completes a predefined task using the docs | Tests usefulness, not just readability. |
 | Maintenance effort | Time spent assessing, updating, reviewing, and validating docs | Tests whether process overhead is acceptable. |
 | Unnecessary documentation churn | Changes made without a corresponding information change | Detects ritual updates. |
 
+### Defining the impact evaluation set
+
+Before scoring, two maintainers (or a maintainer and independent reviewer) should decide which documents or representations **actually required review** for the test change. If they disagree, record the disagreement and adjudication instead of hiding it in an average.
+
+- **True positive:** JIT-DW proposes a documentation representation and the reference reviewers agree it required attention.
+- **False positive:** JIT-DW proposes a representation that does not require attention.
+- **False negative:** JIT-DW misses a representation that required attention.
+- **True negative:** An unrelated artifact that correctly requires no attention (usually not individually enumerated).
+- **Abstention:** JIT-DW explicitly marks a proposed impact as unknown; report separately from both positive and negative predictions.
+
+Use the same unit of evaluation throughout a trial (e.g. docs artifact, semantic assertion, or representation); do not mix document-level and fact-level counts. When there are no predicted positives or no reference positives, report precision/recall as not applicable rather than inventing a perfect score.
+
+**Self-audit correction:** The previous V0.1 plan accidentally used recall's denominator for both precision and recall. That made the metrics identical and unable to detect unnecessary update suggestions. The formulas above correct it; no pilot data existed under the erroneous definition.
+
 Record sample size and limitations. Do not claim statistical significance from a tiny pilot.
 
-## 4. Comparison
+## 4. Advisory-only trial from Round 2 findings
+
+First use the [change-impact protocol](../docs/workflow/impact-review-protocol.md) without blocking contributions.
+
+Include test changes like:
+- a code-only internal optimization with no apparent public contract change;
+- a new public API that affects several user-facing documents;
+- source-comment-only API behavior clarification replicated across versions;
+- a refactor with inline contracts but no new README;
+- changes to documentation build/discovery tooling.
+
+Record proposed outcome, author/maintainer judgment, the final resolved impact, and additional review time. Treat "unknown" as a meaningful abstention, not a disguised "no docs needed".
+
+Do not promise that all proposals are correct because the selected examples look persuasive.
+
+## 5. Comparison
 
 Where feasible, compare:
 
@@ -57,7 +86,7 @@ Where feasible, compare:
 
 Avoid comparing unrelated repositories as if they were controlled experiments.
 
-## 5. Exit criteria
+## 6. Exit criteria
 
 A pilot should result in one of:
 
