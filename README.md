@@ -4,7 +4,7 @@
 
 **Status:** Guide v0.1 available for use and feedback. Research-backed, but not yet validated in an independent usability pilot. No tool installation required.
 
-**[Read the Guide](guide/README.md) · [中文十分钟实践](guide/quickstart.zh-CN.md) · [Try optional recipes](guide/recipes/README.md)**
+**[Read the Guide](guide/README.md) · [中文十分钟实践](guide/quickstart.zh-CN.md) · [Explore optional recipes](guide/recipes/README.md)**
 
 ## Pick your next step
 
