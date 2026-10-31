@@ -103,3 +103,7 @@ These are bounded samples, not exhaustive audits.
 The next stage inspects real commits, review comments, and responsibility-routing configuration. Its results are available in [Round 2](round-2/README.md), including a [curated change-history sample](round-2/change-history-sample.md), a [Django HTTP QUERY end-to-end trace](round-2/django-query-end-to-end.md), and [ownership/review-routing evidence](round-2/ownership-and-review-routing.md).
 
 Read the [V0.2 synthesis](findings-v0.2.md) for the revised conclusions and the [advisory impact-review protocol](../docs/workflow/impact-review-protocol.md) for a testable procedure. These are still hypotheses to validate in pilots; they are not production-compliance statistics.
+
+## 9. Round 3: Codex/AstrBot Fork-based source comparison
+
+The [third-round comparison](round-3/codex-astrbot-comparison.md) explicitly separates JIT-DW ideas corroborated by actual Codex/AstrBot files and PRs from mechanisms our initial model did not handle well: runtime-parsed docstrings, AST-checked inline hints, complete generated artifact closure, multilingual UI navigation, and actual CI execution/coverage. The [Runner report](../validation/pilots/codex-astrbot/runner-probe.md) records successful hosted probes on both public Forks and a successful private-repository toolchain inspection on the existing self-hosted Runner. This does **not** demonstrate lower documentation cost or a measured impact-prediction accuracy rate.
