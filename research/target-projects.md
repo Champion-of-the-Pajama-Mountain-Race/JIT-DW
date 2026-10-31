@@ -6,14 +6,14 @@ The goal is not to audit every project exhaustively. Select representative artif
 
 | Project | Primary questions | Initial inspection targets | Status |
 |---|---|---|---|
-| Google OpenDocs | How are documentation projects scoped and sequenced? | docs_advisor/, project_archetypes/, audit/ | First tranche complete |
-| The Good Docs Project | What makes templates usable and maintainable? | template files, companion guides, contribution and review process | First tranche complete |
-| Linux kernel | How are function/type comments connected to generated docs? | Documentation/, kernel-doc comments, Sphinx build configuration | First tranche complete |
-| Chromium | How are directory context, design docs, code comments, ownership, and presubmit combined? | docs/, component README files, source comments, OWNERS | First tranche complete; CL history pending |
-| Rust | How do doc comments, examples, links, and doctests constrain API documentation? | rustdoc guides, standard-library docs, documentation tests | First tranche complete |
-| Python | How do source docstrings relate to the manually authored library reference? | Doc/, heapq source and reference, Sphinx configuration | First tranche complete; history pending |
-| Kubernetes | How are API comments, generated reference docs, and validation coordinated? | API type comments, API conventions, verify/update scripts | First tranche complete; deeper PR history pending |
-| Django | How do source docstrings, narrative docs, release notes, and contribution practices interact? | docs/, representative source, feature PRs, documentation checks | First tranche complete |
+| Google OpenDocs | How are documentation projects scoped and sequenced? | docs_advisor/, project_archetypes/, audit/ | First tranche complete; guidance repository, not a codebase practice sample |
+| The Good Docs Project | What makes templates usable and maintainable? | template files, companion guides, contribution and review process | First tranche complete; template-system sample |
+| Linux kernel | How are function/type comments connected to generated docs? | Documentation/, kernel-doc comments, Sphinx build configuration | First tranche complete; one source-plus-doc integration commit sampled |
+| Chromium | How are directory context, design docs, code comments, ownership, and presubmit combined? | docs/, component README files, source comments, OWNERS | First tranche complete; one same-commit README update sampled; broader CL history pending |
+| Rust | How do doc comments, examples, links, and doctests constrain API documentation? | rustdoc guides, standard-library docs, documentation tests | First tranche complete; one merged source-doc PR sampled |
+| Python | How do source docstrings relate to the manually authored library reference? | Doc/, heapq source and reference, Sphinx configuration | First tranche complete; separate source and reference history samples; synchronization analysis pending |
+| Kubernetes | How are API comments, generated reference docs, and validation coordinated? | API type comments, API conventions, verify/update scripts | First tranche complete; one six-file API comment update sampled; broader PR history pending |
+| Django | How do source docstrings, narrative docs, release notes, and contribution practices interact? | docs/, representative source, feature PRs, documentation checks | First tranche complete; three merged PRs sampled |
 
 ## Selection rules
 
