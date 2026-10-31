@@ -1,6 +1,6 @@
 # Codex + AstrBot: retrospective pilot baseline
 
-**Status:** Upstream diff inspection, local prototype tests, and GitHub-hosted prototype CI completed. Fork creation and fork-based CI execution remain blocked by current GitHub connector capabilities. This is *not* a validated accuracy result.
+**Status:** Upstream diff inspection, local and hosted prototype tests, organization Fork creation, and successful hosted Runner probes completed. Both organization self-hosted probes remain queued. This is *not* a validated documentation-impact accuracy result.
 
 **Inspected:** 2026-10-31. Both targets were confirmed publicly readable:
 - https://github.com/openai/codex (default branch main)
@@ -8,13 +8,18 @@
 
 The target organization is Champion-of-the-Pajama-Mountain-Race. Neither org/codex nor org/AstrBot existed when checked. The GitHub connector can create branches, commits, and PRs in existing accessible repos but does not expose a create-fork/create-repository action. The isolated local environment has no authenticated gh and cannot resolve github.com. No upstream source was modified.
 
-## Fork setup (one-time owner action)
+## Fork and runner results
 
-1. Open https://github.com/openai/codex and use Fork -> Champion-of-the-Pajama-Mountain-Race (name codex; retain default main).
-2. Open https://github.com/AstrBotDevs/AstrBot and use Fork -> Champion-of-the-Pajama-Mountain-Race (name AstrBot; retain default master).
-3. Check that the installed GitHub app has access to these two new repos, particularly if access is limited to selected repositories.
+Both organization Forks exist and the connected GitHub account can create branches and commits:
 
-Once accessible, the proposed writable branch in *each fork* is research/jitdw-advisory-pilot, with draft PRs. Do not merge this pilot into upstream or a fork's default branch without review.
+- [Codex pilot branch](https://github.com/Champion-of-the-Pajama-Mountain-Race/codex/tree/research/jitdw-advisory-pilot)
+- [AstrBot pilot branch](https://github.com/Champion-of-the-Pajama-Mountain-Race/AstrBot/tree/research/jitdw-advisory-pilot)
+
+The branches contain only isolated, branch-scoped Runner-probe workflows. Their **GitHub-hosted jobs passed**; organization self-hosted jobs remained queued. The older "Fork setup required" instructions are superseded. See the [dated Runner evidence](runner-probe.md).
+
+**Safety:** Both Forks are public. Do not grant the existing persistent organization Runner blanket access merely to clear the queued jobs. Use hosted CI for this advisory experiment.
+
+The [Codex/AstrBot source comparison](../../../research/round-3/codex-astrbot-comparison.md) documents confirmed JIT-DW design points and newly discovered gaps.
 
 ## Why these projects are good contrasts
 
@@ -70,8 +75,8 @@ Use Updated / No update required / Deferred / Unknown per changed fact. A source
 - **Future Codex fork code checks:** pinned Rust toolchain and possibly Bazel, just, dotslash, cargo-nextest, build tools and sufficient disk space for scoped crate tests. Inspect fork workflow/toolchain pin before installing.
 - **Future AstrBot fork code checks:** Python >=3.12, uv, Ruff/pytest, and Node + pnpm if documentation site/WebUI or generated clients are touched.
 
-No dedicated target runner was interrogated; therefore no missing package is asserted. CI should start advisory and scope tests narrowly; don't enable untrusted upstream workflows with privileged secrets.
+Hosted runners successfully ran the two Fork probes. Organization self-hosted jobs were queued and did not execute tool-presence checks; no missing package can be inferred. CI should start advisory and scope tests narrowly; don't enable untrusted upstream workflows with privileged secrets.
 
 ## Limitations and next step
 
-This is a retrospective upstream PR analysis, not a fork-based live change experiment. Some fixtures intentionally sample only part of large PRs. Neither upstream test suite was executed; no real maintenance-cost or reader-task experiment has been completed. Fork availability is the gating operation for live branch/PR trials. 
+This is a retrospective upstream PR analysis, not a fork-based live change experiment. Some fixtures intentionally sample only part of large PRs. Neither upstream test suite was executed; no real maintenance-cost or reader-task experiment has been completed. Fork availability is resolved. Remaining validation work: expert labeling of documentation impacts, a real scoped hosted-runner experiment, and measurement of false positives, misses and reviewer time. 
