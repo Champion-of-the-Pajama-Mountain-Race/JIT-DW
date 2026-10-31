@@ -1,9 +1,10 @@
 # Case study: Linux kernel documentation
 
-**Status:** Evidence-complete for kernel-doc and kref documentation patterns.  
+**Status:** Evidence-complete for kernel-doc, kref documentation, and one concrete documentation-maintenance commit.  
 **Repository:** https://github.com/torvalds/linux  
 **Revision:** a9547379cb381e2a036e3261a6becc17973ac470  
-**Scope:** kernel-doc rules, the kref API header, and the kref conceptual guide.
+**History sample:** b76d32422c09bc9310f61a5a89671975db34bd2a  
+**Scope:** kernel-doc rules, the kref API header, the kref conceptual guide, and the change that connected them.
 
 ## 1. Question
 
@@ -20,6 +21,7 @@ The kernel has a long-lived C codebase, public headers, in-tree documentation, a
 | E1 | P | [Writing kernel-doc comments](https://github.com/torvalds/linux/blob/a9547379cb381e2a036e3261a6becc17973ac470/Documentation/doc-guide/kernel-doc.rst#L9-L58) | Structured comments describe functions, types, and design; they are extracted into Sphinx C-domain reference documentation; placement near declarations is intentional. |
 | E2 | C/I | [include/linux/kref.h](https://github.com/torvalds/linux/blob/a9547379cb381e2a036e3261a6becc17973ac470/include/linux/kref.h#L49-L63) | kref_put's comment documents arguments, callback restrictions, behavior, and return-value caveats. |
 | E3 | D | [kref guide](https://github.com/torvalds/linux/blob/a9547379cb381e2a036e3261a6becc17973ac470/Documentation/core-api/kref.rst#L14-L65) | A separate guide explains the reference-counting concept, initialization, and usage rules. |
+| E4 | H | [kref: Improve documentation](https://github.com/torvalds/linux/commit/b76d32422c09bc9310f61a5a89671975db34bd2a) | One commit changed both the header comments and kref.rst; its message says the kernel-doc comments existed but were not linked into the HTML documentation. |
 
 ## 4. What the project actually does
 
@@ -40,9 +42,20 @@ The kref header demonstrates what belongs in an API contract comment. The kref_p
 
 The separate kref guide explains the concept and rules of use, including initialization and when references must be incremented or released.
 
+### A real maintenance change
+
+The 2024 commit titled “kref: Improve documentation” is unusually revealing. Its commit message says that kernel-doc comments already existed for many functions in kref.h, but those comments were not linked into the HTML documentation anywhere. The commit therefore:
+
+- added a kernel-doc directive to kref.rst to include the header's documentation;
+- improved the source comments, including standardizing the Return section;
+- added comments for previously undocumented functions;
+- changed the conceptual guide and the source header in the same commit.
+
+This is stronger evidence than the policy alone. It shows that colocating comments with code does not automatically make them discoverable in the published documentation. The source-to-reference connection must also be maintained.
+
 ## 5. Why these practices may exist
 
-**Stated rationale:** Embedding structured comments in source makes documentation easier to keep up to date. Placing comments directly before declarations increases the chance that code changes and documentation changes happen together.
+**Stated rationale:** Embedding structured comments in source makes documentation easier to keep up to date. Placing comments directly before declarations increases the chance that code changes and documentation changes happen together. The kref commit adds a second explicit rationale: source comments are not useful as published reference until the documentation tree includes them.
 
 **Inferred rationale:** The split between source comments and conceptual documentation reduces the need to repeat every API detail in a separate manual while still giving users a coherent explanation of the broader programming model.
 
@@ -54,6 +67,7 @@ The separate kref guide explains the concept and rules of use, including initial
 |---|---|---|
 | High-value API contracts should live close to declarations | supports | kernel-doc placement rules and kref_put example. |
 | Source comments can be an input to generated documentation | supports | kernel-doc extraction to Sphinx C-domain descriptions. |
+| Source comments alone guarantee published discoverability | contradicts | The kref commit explicitly fixed comments that existed but were not linked into HTML docs. |
 | Every source file needs a separate responsibility document | not observed | The inspected system documents selected functions/types and broader concepts, not one Markdown file per source file. |
 | Every private function needs the same documentation effort | contradicts | Static/private documentation is lower priority and left to maintainer discretion. |
 | A successful general build validates every comment | contradicts | Header comments require separate checking. |
@@ -63,15 +77,16 @@ The separate kref guide explains the concept and rules of use, including initial
 
 - Structured comments require a format and tooling that contributors must learn.
 - Generated reference pages reduce manual duplication but cannot replace conceptual explanations.
+- Source comments can exist without being included in the published documentation tree.
 - Validation is not uniform across file types; header files have a separate check path.
 - The inspected kref example is illustrative, not a measurement of all kernel subsystems.
 
 ## 8. Findings
 
-- **Observed practice:** Linux uses structured source comments for selected API contracts and generates reference documentation from them, while maintaining separate conceptual guides.
-- **Stated rationale:** Locality increases the chance that documentation is updated with the code.
+- **Observed practice:** Linux uses structured source comments for selected API contracts, generates reference documentation from them, and explicitly wires those generated descriptions into conceptual documentation.
+- **Stated rationale:** Locality increases the chance that documentation is updated with the code; the kref change also demonstrates that published discoverability needs a separate integration step.
 - **Inferred rationale:** Generated reference pages help serve readers without maintaining a second copy of every API signature.
-- **Confidence:** High for the documented kernel-doc mechanism and the kref example; medium for generalizing to all kernel subsystems.
-- **What JIT-DW should adopt:** Put stable API contracts near declarations when the language/toolchain supports it; define which symbols require documentation; validate each source form through the right tool.
+- **Confidence:** High for the documented mechanism and the concrete kref maintenance commit; medium for generalizing to all kernel subsystems.
+- **What JIT-DW should adopt:** Put stable API contracts near declarations when the language/toolchain supports it; define which symbols require documentation; verify both comment quality and publication/navigation integration.
 - **What JIT-DW should not copy:** A blanket requirement to document every private implementation detail.
 - **What needs pilot validation:** Whether a lighter version of structured source comments can work in ordinary multi-language repositories.
