@@ -46,3 +46,7 @@ Try the Guide on two contrasting real tasks, with one person who did not author 
 - a public API or onboarding failure where some reader-facing explanation clearly helps.
 
 Observe task completion, needless new artifacts, changes in understanding, time, and whether the author retains autonomy. Use the optional CLI only as a separate comparison group, not as the default definition of JIT-DW success.
+
+## Private pilot boundary
+
+A first independent Guide-only trial has been prepared in a separate private project's own experiment branch. Public JIT-DW retains only [the method and validation boundaries](../../validation/pilots/first-private-pilot.md). Internal task prompts, revision-specific facts and answer keys must not be republished here. The trial has not yet generated outcome data.

@@ -75,7 +75,7 @@ Use Updated / No update required / Deferred / Unknown per changed fact. A source
 - **Future Codex fork code checks:** pinned Rust toolchain and possibly Bazel, just, dotslash, cargo-nextest, build tools and sufficient disk space for scoped crate tests. Inspect fork workflow/toolchain pin before installing.
 - **Future AstrBot fork code checks:** Python >=3.12, uv, Ruff/pytest, and Node + pnpm if documentation site/WebUI or generated clients are touched.
 
-Hosted runners successfully ran the two Fork probes. Organization self-hosted jobs were initially queued in the public Forks and then cancelled without execution. Trusted private Bot_R_A_D runs did execute tool-presence checks and found missing just, cargo-nextest, Bazel/Bazelisk and DotSlash; see [runner report](runner-probe.md). CI should start advisory and scope tests narrowly; don't enable untrusted upstream workflows with privileged secrets.
+Hosted runners successfully ran the two Fork probes. Organization self-hosted jobs were initially queued in the public Forks and then cancelled without execution. Detailed tool inventories from separate private systems are not published in this public research repository; for public Fork trials, use the [hosted-runner evidence](runner-probe.md) and install dependencies only if a real scoped build needs them. CI should start advisory and scope tests narrowly; don't enable untrusted upstream workflows with privileged secrets.
 
 ## Limitations and next step
 

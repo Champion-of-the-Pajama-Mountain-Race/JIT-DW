@@ -12,9 +12,10 @@
 | Changing code in an established project | [Evolve alongside code](04-evolve.md) | A light, judgment-driven way to keep explanations current |
 | Introducing documentation practices to a team | [Adopt at your own scale](05-adoption.md) | Low-overhead ways to begin and conditions for adding more process |
 | Wondering why a recommendation exists | [Lessons from mature projects](06-case-lessons.md) | Source-linked evidence, alternatives, and cases where not to copy it |
+| Wanting to see the whole reading process | [Worked public-source example](07-worked-example.md) | Follow a reader question from a module map to a precise interface contract |
 | Wanting a concrete starting page or example | [Recipes](recipes/README.md) | Copyable, optional examples with an explanation of when to use them |
 
-[中文导读](README.zh-CN.md) · [Research sources and limitations](../research/README.md) · [Optional advisory tools](../tools/jitdw_advisor.py)
+[中文十分钟实践](quickstart.zh-CN.md) · [中文导读](README.zh-CN.md) · [Research sources and limitations](../research/README.md) · [Optional advisory tools](../tools/jitdw_advisor.py)
 
 ## The short version
 
@@ -43,7 +44,7 @@ You did not need a new documentation committee, owner table, or JIT-DW installat
 
 JIT-DW is not a universal directory standard, documentation gate, mandatory template suite, or demand to annotate every function. Some projects legitimately remain at README level. An intentional absence of additional documentation can be a good design choice.
 
-The [older workflow research](../docs/workflow/README.md), [impact review protocol](../docs/workflow/impact-review-protocol.md), and [advisory prototype](../tools/jitdw_advisor.py) remain available as **optional supporting material**. They are not steps you must pass before contributing code.
+For an independent assessment of this approach, see the [public pilot methodology](../validation/pilots/first-private-pilot.md); private project details are not published here. The [older workflow research](../docs/workflow/README.md), [impact review protocol](../docs/workflow/impact-review-protocol.md), and [advisory prototype](../tools/jitdw_advisor.py) remain available as **optional supporting material**. They are not steps you must pass before contributing code.
 
 ## Evidence and uncertainty
 

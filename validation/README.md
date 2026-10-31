@@ -17,6 +17,12 @@ Before evaluating automation accuracy, compare a developer using **only the [Gui
 
 The advisory tool should be evaluated separately, only if it appears to add value beyond the Guide.
 
+### First independent pilot preparation
+
+The [public first-pilot outline](pilots/first-private-pilot.md) describes the Guide-only reading and authoring experiment without exposing a private project's source, identities or participant answers. Exact baseline, source key, tasks and session record are maintained in the target project's **private experimental branch**.
+
+No participant outcomes have been measured yet. Do not interpret successful internal Guide CI as a pilot result.
+
 ## 1. Pilot types
 
 ### Pilot A — multi-module project

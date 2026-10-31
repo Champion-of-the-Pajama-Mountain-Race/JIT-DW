@@ -4,7 +4,7 @@
 
 **Status:** Guide v0.1 available for use and feedback. Research-backed, but not yet validated in an independent usability pilot. No tool installation required.
 
-**[Read the Guide](guide/README.md) · [中文导读](guide/README.zh-CN.md) · [Try optional recipes](guide/recipes/README.md)**
+**[Read the Guide](guide/README.md) · [中文十分钟实践](guide/quickstart.zh-CN.md) · [Try optional recipes](guide/recipes/README.md)**
 
 ## Pick your next step
 
@@ -16,6 +16,7 @@
 | How do I keep docs aligned without another approval pipeline? | [Let documentation evolve with code](guide/04-evolve.md) |
 | How should an individual or team adopt this gradually? | [Adopt at your own scale](guide/05-adoption.md) |
 | What do mature projects actually do, and why? | [Lessons from mature projects](guide/06-case-lessons.md) |
+| Can I follow a complete reading journey in public code? | [Chromium worked example](guide/07-worked-example.md) |
 
 ## The idea
 
@@ -73,7 +74,7 @@ Improvements to the Guide are welcome, especially:
 - primary-source evidence from actual project docs, code or PRs;
 - clearer recipes with tested commands and honest limitations.
 
-You do **not** need to use the JIT-DW advisory CLI to contribute.
+You do **not** need to use the JIT-DW advisory CLI to contribute. See [the short contribution guide](CONTRIBUTING.md), including the public/private research boundary.
 
 ## License
 
