@@ -1,21 +1,17 @@
 # Design decisions
 
-This directory records decisions made while designing JIT-DW.
+This directory explains project direction and trade-offs. A decision record preserves *why* a choice was made; current guidance lives in the [Guide](../../guide/README.md).
 
-A decision record should capture context, options, the choice, consequences, and evidence. It is not a replacement for current workflow documentation.
+## Adopted working decisions
 
-## Status
+- [0001 — Guide first, not audit system](0001-guide-first.md) (2026-10-31): the primary product is developer guidance; recipes and research support it; automation is optional.
 
-No decisions are accepted yet. The initial workflow documents are provisional proposals.
+## Questions to revisit with evidence
 
-## Candidate decisions to resolve
+- Whether the Guide needs full translation or a shorter Chinese navigation page remains sufficient.
+- Which optional recipe formats readers find easiest to adapt.
+- Whether the Lite/Standard/Advanced research profiles improve adoption or merely add labels.
+- Whether any optional automation consistently saves effort and merits wider recommendation.
+- How coding-agent-specific examples can avoid replacing a team's existing conventions.
 
-1. Documentation language and localization policy.
-2. Whether module contracts should be a first-class template or an optional pattern.
-3. How to represent file-level responsibilities without creating high maintenance overhead.
-4. Whether Lite / Standard / Advanced are the right adoption profiles.
-5. How to record no-documentation-update-required decisions.
-6. What an agent-facing entry point should contain and how it should link to canonical information.
-7. Which automation belongs in the default kit versus optional integrations.
-
-Use a conventional ADR format once a decision is ready. Superseded records should remain in the history and link to the replacing decision.
+Record decisions only when doing so preserves a real rationale. Do not start a decision record for every small edit. Historical records may be superseded; they are not automatically the current implementation truth.
